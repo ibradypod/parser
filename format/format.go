@@ -304,10 +304,10 @@ func (ctx *RestoreCtx) WriteString(str string) {
 	quotes := ""
 	switch {
 	case ctx.Flags.HasStringSingleQuotesFlag():
-		str = strings.Replace(str, `'`, `''`, -1)
+		str = strings.Replace(str, `'`, `\'`, -1)
 		quotes = `'`
 	case ctx.Flags.HasStringDoubleQuotesFlag():
-		str = strings.Replace(str, `"`, `""`, -1)
+		str = strings.Replace(str, `"`, `\"`, -1)
 		quotes = `"`
 	}
 	fmt.Fprint(ctx.In, quotes, str, quotes)
@@ -325,10 +325,10 @@ func (ctx *RestoreCtx) WriteName(name string) {
 	quotes := ""
 	switch {
 	case ctx.Flags.HasNameDoubleQuotesFlag():
-		name = strings.Replace(name, `"`, `""`, -1)
+		name = strings.Replace(name, `"`, `\"`, -1)
 		quotes = `"`
 	case ctx.Flags.HasNameBackQuotesFlag():
-		name = strings.Replace(name, "`", "``", -1)
+		name = strings.Replace(name, "`", "\\`", -1)
 		quotes = "`"
 	}
 	fmt.Fprint(ctx.In, quotes, name, quotes)
